@@ -93,23 +93,16 @@ distributed with this repository — see *Data* below).
 
 ## Verification
 
-Each processing stage was implemented and tested before being combined into the full
-pipeline:
+Each processing stage was implemented and tested before being combined into the full pipeline:
 
-- The range-alignment method was developed and its robustness to outliers investigated by
-  comparing several outlier-handling approaches; the write-up in `docs/` documents this
-  investigation and the selection of robust regression.
-- The autofocus and image-formation stages were verified on windows with known behaviour,
-  and the image-contrast metric was checked against values reported in the literature.
-- The MC-ATWS pipeline was tested per stage (window evaluation, peak search, window-length
-  refinement, candidate filtering) before combining, and applied across all 17 recordings;
-  the resulting selected-image parameters are recorded in
-  `mcatws/MCATWS_results_summary.csv`.
-- Measured ISAR images were compared against idealised simulated reference images to check
-  that the observed signatures are consistent with the expected vessel geometry.
+- The range-alignment method was developed and its robustness to outliers investigated by comparing several outlier-handling approaches; the write-up in `docs/` documents this investigation and the selection of robust regression.
+- The autofocus stage was checked by confirming that the phase correction applied to the reference profile was zero, that the image contrast improved after autofocus on well-focused windows, and by inspecting the estimated phase-shift and selected-scatterer diagnostics to confirm the correction was physically sensible. The autofocus implementation was also reviewed by the supervisor.
+- The image-formation stage was verified using the point-scatterer simulator: targets with known scatterer geometry were shown to produce ISAR images consistent with the defined positions of the scatterers.
+- The image-contrast metric was implemented to match the definition used in the literature, and the resulting contrast values were confirmed to lie in a range comparable to published values.
+- The MC-ATWS pipeline was tested per stage (window evaluation, peak search, window-length refinement, candidate filtering) before combining, and applied across all 17 recordings; the resulting selected-image parameters are recorded in `mcatws/MCATWS_results_summary.csv`.
+- Measured ISAR images were compared against idealised simulated reference images to check that the observed signatures are consistent with the expected vessel geometry.
 
-The write-ups in `docs/` provide the detailed evidence of testing and verification for each
-stage.
+The write-ups in `docs/` provide the detailed evidence of testing and verification for each stage.
 
 ## Tools
 
