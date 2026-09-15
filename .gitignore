@@ -1,0 +1,14 @@
+# CSIR radar data - used under approval, not distributed
+*.mat
+
+# Large movie files
+*.mp4
+*.avi
+
+# MATLAB temporary/backup files
+*.asv
+*.m~
+
+# OS files
+.DS_Store
+Thumbs.db
