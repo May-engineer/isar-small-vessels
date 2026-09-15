@@ -41,7 +41,7 @@ reference images.
 - **`functions/`** — shared MATLAB functions used across the project:
   - `HaywoodAlignFunction.m` — range alignment (cross-correlation with robust delay fitting)
   - `YuanAutofocusFunction.m` — Yuan multiple-scatterer autofocus
-  - `evaluateWindow.m` — forms an ISAR image for one window and computes its image contrast
+  - `evaluateWindow.m` — processes one candidate CPI window to form an ISAR image and compute its image contrast.
   - `Normalise_limitDynamicRange_ISAR_dB.m` — dB normalisation for display
   - `centreISARImage.m` — centres the target in an ISAR image
   - `generateISARMovie.m` — forms a sequence of ISAR images and saves them as a movie
