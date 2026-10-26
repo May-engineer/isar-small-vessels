@@ -161,7 +161,7 @@ The principal processing stages were assessed using measured radar data, image-c
 
 - **Point-scatterer simulation:** The simulator generated plausible ISAR scattering responses for idealised vessel models and was reviewed by the supervisor.
 
-- **Implementation consistency:** `verifyAlignmentAutofocus.m` compares the final focused profiles, complex ISAR image and IC against `evaluateWindow.m` using a numerical tolerance of `1e-10`.
+- **Implementation consistency:** `verifyAlignmentAutofocus.m` compares the range-aligned and autofocused HRR profiles, complex ISAR image and IC against `evaluateWindow.m` using a numerical tolerance of `1e-10`.
 
 ## Tools
 
