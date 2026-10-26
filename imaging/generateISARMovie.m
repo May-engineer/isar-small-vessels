@@ -1,31 +1,38 @@
 function generateISARMovie(HRRProfilesAll, ProfileRepetitionFreq, ...
                            CPTWL, RangeAxis, dopplerBinsToRemove, ...
                            fps, outputFilename)
-% GENERATEISARMOVIE
-% Forms a sequence of focused ISAR images from one radar recording using a
-% fixed CPTWL and 50% overlap then saves the sequence as an MP4.
+%GENERATEISARMOVIE  Form a sequence of ISAR images and save as an MP4.
 %
-% HRRProfilesAll        : totalProfiles x n complex HRR profiles
-% ProfileRepetitionFreq : HRR profile repetition frequency (Hz)
-% CPTWL                 : coherent processing time window length in profiles
-% RangeAxis             : range axis in metres
-% dopplerBinsToRemove   : Doppler bins each side of zero excluded from the IC
-% fps                   : movie playback frame rate
-% outputFilename        : output MP4 filename
+%   generateISARMovie(HRRProfilesAll, ProfileRepetitionFreq, CPTWL, ...
+%                     RangeAxis, dopplerBinsToRemove, fps, outputFilename)
+%
+%   Steps a fixed CPTWL window through the recording with 50% overlap,
+%   forms a focused ISAR image at each position (via evaluateWindow),
+%   and writes the sequence as an MP4 movie.
+%
+%   HRRProfilesAll        : totalProfiles x n complex HRR profiles
+%   ProfileRepetitionFreq : HRR-profile repetition frequency (Hz)
+%   CPTWL                 : window length in profiles
+%   RangeAxis             : down-range axis in metres
+%   dopplerBinsToRemove   : Doppler bins each side of zero excluded from IC
+%   fps                   : movie playback frame rate
+%   outputFilename        : output MP4 path
 
     totalProfiles = size(HRRProfilesAll, 1);
     n = size(HRRProfilesAll, 2);
 
     if CPTWL > totalProfiles
-        error('CPTWL is longer than the radar recording.');
+        error('generateISARMovie:windowTooLong', ...
+              'CPTWL (%d) is longer than the recording (%d profiles).', ...
+              CPTWL, totalProfiles);
     end
 
-    step = CPTWL / 2;                                 % 50% overlap
+    step           = CPTWL / 2;                       % 50% overlap
     startPositions = 1 : step : (totalProfiles - CPTWL + 1);
-    numFrames = numel(startPositions);
+    numFrames      = numel(startPositions);
 
-    N = CPTWL;
-    DopplerAxis_Hz = (-N/2 : N/2-1) * ProfileRepetitionFreq / N;
+    % Doppler axis supporting both even and odd CPTWLs.
+    DopplerAxis_Hz = ((0:CPTWL-1) - floor(CPTWL/2)) * ProfileRepetitionFreq / CPTWL;
 
     RangeAxis = reshape(RangeAxis, 1, n);             % row vector for plotting
 
@@ -46,20 +53,17 @@ function generateISARMovie(HRRProfilesAll, ProfileRepetitionFreq, ...
         try
             [IC_value, ISAR_image] = evaluateWindow(HRR_profiles, dopplerBinsToRemove);
         catch ME
-            % Report and skip a window that cannot be processed so the movie
-            % continues but the failure is not hidden.
+            % Record a window that cannot be processed as a blank frame so the
+            % movie continues without hiding the failure.
             fprintf('  Window %d-%d failed: %s\n', startProfile, stopProfile, ME.message);
-            ISAR_image = ones(CPTWL, n) * eps;        % blank frame
+            ISAR_image = ones(CPTWL, n) * eps;
             IC_value   = 0;
         end
 
-        %% Convert to dB (+ eps avoids log10(0) = -Inf)
+        %% Convert to dB and normalise so the peak is at 0 dB (-35 to 0 range)
         image_dB = 20 * log10(abs(ISAR_image) + eps);
-
-        %% Display dynamic range (35 dB below peak)
-        maximum_dB    = max(image_dB(:));
-        lowerLimit_dB = maximum_dB - 35;
-        clims = [lowerLimit_dB, maximum_dB];
+        image_dB = image_dB - max(image_dB(:));
+        clims    = [-35 0];
 
         %% Plot this frame
         clf(fig);
