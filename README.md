@@ -57,7 +57,7 @@ ISAR movies, and compared against the simulated reference images.
 - **`config/`** — project configuration:
   - `recordingParameters.m` — filename, vessel class and fixed-duration CPTWL for each recording (by ID)
 
-- **`mcatws/`** — the Maximum-Contrast-based Automatic Time-Window Selection (MC-ATWS) pipeline:
+- **`mcatws/`** — the Maximum Contrast-based Automatic Time-Window Selection (MC-ATWS) pipeline:
   - `run_all.m` — top-level batch script over all 17 recordings
   - `runMCATWS.m` — runs the search and window-length refinement for one recording
   - `searchCPTWL.m` — finds local image-contrast peaks (candidate imaging centres)
