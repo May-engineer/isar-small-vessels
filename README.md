@@ -149,17 +149,19 @@ inspectZeroDopplerBand('Y2', 176, 50)
 
 ## Verification
 
-Each processing stage was implemented and tested before being combined into the full pipeline:
+The principal processing stages were assessed using measured radar data, image-contrast comparisons and qualitative inspection.
 
-- The range-alignment method was developed and its robustness to outliers investigated by comparing several outlier-handling approaches; the write-up in `docs/` documents this investigation and the selection of robust regression.
-- The autofocus stage was checked by confirming that the phase correction applied to the reference profile was zero, that the image contrast improved after autofocus on well-focused windows, and by inspecting the estimated phase-shift and selected-scatterer diagnostics to confirm the correction was physically sensible. The autofocus implementation was also reviewed by the supervisor.
-- The image-formation stage was verified using the point-scatterer simulator: targets with known scatterer geometry produced ISAR images consistent with the defined scatterer positions.
-- The image-contrast metric was implemented to match the definition used in the literature, and the resulting contrast values were confirmed to lie in a range comparable to published values.
-- The MC-ATWS pipeline was tested per stage (window evaluation, peak search, window-length refinement, candidate filtering) before combining, and applied across all 17 recordings; the resulting selected-image parameters are recorded in `outputs/mcatws/MCATWS_results_summary.csv`.
-- `verifyAlignmentAutofocus.m` additionally confirms that the inline processing agrees with `evaluateWindow.m` to within 1e-10.
-- Measured ISAR images were compared against idealised simulated reference images to check that the observed signatures are consistent with the expected vessel geometry.
+- **Range alignment:** Verified using yacht recording Y2 (MP 176, CPTWL 50). IC increased from 7.80 before alignment to 11.31 after modified Haywood range alignment, accompanied by a more compact and better-defined ISAR response.
 
-The write-ups in `docs/` provide the detailed evidence of testing and verification for each stage.
+- **Autofocus:** Verified using the same yacht CPI. Applying adapted Yuan autofocus after range alignment increased IC from 11.31 to 13.10, indicating improved image-intensity concentration, although the visual change was modest.
+
+- **Range–Doppler image formation:** The implementation successfully formed ISAR images from measured HRR profiles and was reviewed by the supervisor.
+
+- **MC-ATWS:** Verified using three retained candidate intervals from yacht recording Y2, representing high, intermediate and lower IC values. Each was compared against two randomly selected non-selected intervals of the same CPTWL. All three MC-ATWS-selected intervals achieved higher IC than their respective comparison intervals, supporting the intended contrast-based selection behaviour.
+
+- **Point-scatterer simulation:** The simulator generated plausible ISAR scattering responses for idealised vessel models and was reviewed by the supervisor.
+
+- **Implementation consistency:** `verifyAlignmentAutofocus.m` compares the final focused profiles, complex ISAR image and IC against `evaluateWindow.m` using a numerical tolerance of `1e-10`.
 
 ## Tools
 
