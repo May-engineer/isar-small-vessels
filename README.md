@@ -13,13 +13,13 @@ small maritime vessels using measured radar data.
 ISAR exploits the relative motion between a radar and a target to form a two-dimensional
 image. It is well established for aircraft and large ships, but comparatively little
 experimental work exists on the radar phenomenology of *small* vessels — rubber inflatable
-boats (RIBs), patrol boats and yachts.
+boats (RIBs), patrol vessels and yachts.
 
 This project investigates the feasibility and temporal availability of useful ISAR imagery
 from measured radar data of small maritime vessels. It examines how the coherent processing
 interval (CPI), target motion and achievable cross-range resolution influence image quality,
 and assesses the qualitative interpretability of vessel-specific scattering structures.
-Measured ISAR images are compared against idealised reference images produced by a
+Measured ISAR images are compared against idealised reference images produced by an adapted
 point-scatterer simulator.
 
 The work uses anonymous high-range-resolution radar datasets from the CSIR and is
