@@ -12,7 +12,7 @@ small maritime vessels using measured radar data.
 
 ISAR exploits the relative motion between a radar and a target to form a two-dimensional
 image. It is well established for aircraft and large ships, but comparatively little
-experimental work exists on the radar phenomenology of *small* vessels — rigid inflatable
+experimental work exists on the radar phenomenology of *small* vessels — rubber inflatable
 boats (RIBs), patrol boats and yachts.
 
 This project investigates the feasibility and temporal availability of useful ISAR imagery
