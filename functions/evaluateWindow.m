@@ -2,7 +2,7 @@ function [IC_value, ISAR_image, FocusedProfiles] = evaluateWindow(HRR_profiles, 
 % EVALUATEWINDOW  Align, autofocus, form and score one candidate CPI window.
 %
 %   HRR_profiles        : N x n complex HRR profiles
-%                         (rows = profiles / slow time, coloumns = range bins)
+%                         (rows = profiles / slow time, columns = range bins)
 %
 %   dopplerBinsToRemove : number of Doppler bins on EACH SIDE of zero Doppler
 %                         to EXCLUDE from the IC calculation (removed, not zeroed).

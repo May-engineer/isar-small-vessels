@@ -84,7 +84,7 @@ function [kept, stats] = filterCandidates(candidates, overlapThreshold, relative
     dedup = candidates(keepMask);
     nDedup = numel(dedup);
 
-    %% Step 5 - RELATIVE quality filter (fraction of the recording's best IC)
+    %% Step 3 - RELATIVE quality filter (fraction of the recording's best IC)
     if relativeICThreshold > 0 && ~isempty(dedup)
 
         % Find the highest IC among the deduplicated candidates. This provides
@@ -103,7 +103,7 @@ function [kept, stats] = filterCandidates(candidates, overlapThreshold, relative
     % Record the number of candidates remaining after quality filtering.
     nKept = numel(dedup);
 
-    %% Step 6 - sort the retained candidates chronologically
+    %% Step 4 - sort the retained candidates chronologically
     [~, chronOrder] = sort([dedup.middleProfile], 'ascend');
     kept = dedup(chronOrder);
 

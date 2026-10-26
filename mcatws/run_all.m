@@ -1,4 +1,3 @@
-
 %% run_all.m - MC-ATWS processing across all 17 recordings
 % Runs Maximum-Contrast-based Automatic Time-Window Selection (MC-ATWS)
 % on all 17 measured recordings using initial CPTWLs of 32, 64 and 128.
@@ -123,7 +122,7 @@ for i = 1:numel(recordingIDs)
 
             imagesc(RangeAxis, DopplerAxis_Hz, image_dB, clims);
 
-            xlabel('Range (m)');
+            xlabel('Down-Range (m)');
             ylabel('Doppler frequency (Hz)');
 
             title(sprintf( ...
