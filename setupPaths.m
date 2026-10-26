@@ -11,7 +11,7 @@ function paths = setupPaths()
 
     % Repository root.
     rootDir = fileparts(mfilename('fullpath'));
-after i put this in my
+
     % Project directories.
     paths.root = rootDir;
     paths.data = fullfile(rootDir, 'data');
