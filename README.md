@@ -10,7 +10,7 @@ small maritime vessels using measured radar data.
 
 ## About
 
-ISAR exploits the relative motion between a radar and a target to form a two-dimensional
+ISAR exploits the relative rotational motion between a radar and a target to form a two-dimensional
 image. It is well established for aircraft and large ships, but comparatively little
 experimental work exists on the radar phenomenology of *small* vessels — rubber inflatable
 boats (RIBs), patrol vessels and yachts.
@@ -22,7 +22,7 @@ and assesses the qualitative interpretability of vessel-specific scattering stru
 Measured ISAR images are compared against idealised reference images produced by an adapted
 point-scatterer simulator.
 
-The work uses anonymous high-range-resolution radar datasets from the CSIR and is
+The work uses measured high-range-resolution radar datasets from the CSIR and is
 implemented in MATLAB.
 
 ## Processing pipeline
@@ -62,7 +62,7 @@ ISAR movies, and compared against the simulated reference images.
   - `runMCATWS.m` — runs the search and window-length refinement for one recording
   - `searchCPTWL.m` — finds local image-contrast peaks (candidate imaging centres)
   - `refineWLE.m` — refines the window length at each candidate
-  - `filterCandidates.m` — deduplicates overlapping candidates and applies a relative IC threshold
+  - `filterCandidates.m` — removes invalid candidates, deduplicates overlapping intervals and applies a relative IC threshold
 
 - **`imaging/`** — ISAR image and movie generation:
   - `generateISARImage.m` — regenerates a single selected ISAR image (with optional display centring)
@@ -78,7 +78,7 @@ ISAR movies, and compared against the simulated reference images.
 
 - **`data/`** — location for the CSIR recordings (not distributed; see *Data* below).
 
-- **`outputs/`** — generated results (candidate CSV, images, movies). Mostly excluded from Git.
+- **`outputs/`** — generated results, including the retained MC-ATWS summary CSV. Generated images and movies are excluded from Git.
 
 - **`docs/`** — write-ups documenting the implementation and verification of each stage.
 
@@ -109,7 +109,7 @@ configuration is needed.
 run_all
 ```
 
-  Processes each recording over initial CPTWLs of 32, 64 and 128 profiles, refines the
+  Processes each recording over initial CPTWLs of 32, 64 and 128 profiles, with 50% overlap, refines the
   window length at each candidate, deduplicates overlapping candidates and applies a relative image-contrast threshold, and writes
   `outputs/mcatws/MCATWS_results_summary.csv`.
 
