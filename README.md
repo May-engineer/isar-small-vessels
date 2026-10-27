@@ -18,7 +18,7 @@ boats (RIBs), patrol vessels and yachts.
 This project investigates the feasibility and temporal availability of useful ISAR imagery
 from measured radar data of small maritime vessels. It examines how the coherent processing
 interval (CPI), target motion and achievable cross-range resolution influence image quality,
-and assesses the qualitative interpretability of vessel-specific scattering structures.
+and assesses the qualitative interpretability of vessel-specific scattering centres and their relationship to physical vessel structures.
 Measured ISAR images are compared against idealised reference images produced by an adapted
 point-scatterer simulator.
 
@@ -156,7 +156,7 @@ The principal processing stages were assessed using measured radar data, image-c
 
 - **Range–Doppler image formation:** The implementation successfully formed ISAR images from measured HRR profiles and was reviewed by the supervisor.
 
-- **MC-ATWS:** Verified using three retained candidate intervals from yacht recording Y2, representing high, intermediate and lower IC values. Each was compared against two randomly selected non-selected intervals of the same CPTWL. All three MC-ATWS-selected intervals achieved higher IC than their respective comparison intervals, supporting the intended contrast-based selection behaviour.
+- **MC-ATWS:** Verified using three retained candidate intervals from yacht recording Y2, representing high, intermediate and lower IC values. Each was compared against two randomly chosen intervals of the same CPTWL that were not selected by MC-ATWS. All three MC-ATWS-selected intervals achieved higher IC than their respective comparison intervals, supporting the intended contrast-based selection behaviour.
 
 - **Point-scatterer simulation:** The simulator generated plausible ISAR scattering responses for idealised vessel models and was reviewed by the supervisor.
 
