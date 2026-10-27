@@ -32,7 +32,7 @@ HRR profiles → modified Haywood range alignment → adapted Yuan autofocus →
 Hamming-windowed Range–Doppler image formation → image-contrast evaluation.
 
 **Image selection and assessment:**  
-MC-ATWS identification of high-contrast candidate intervals, and visual inspection of overlapping-CPI ISAR sequences → qualitative assessment of vessel-specific structure.
+MC-ATWS identification of high-contrast candidate intervals and visual inspection of overlapping-CPI ISAR sequences → qualitative assessment of vessel-specific structure.
 
 **Simulation:**  
 Point-scatterer vessel model → prescribed rotation → simulated HRR profiles →
