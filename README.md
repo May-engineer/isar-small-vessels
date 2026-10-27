@@ -18,7 +18,7 @@ boats (RIBs), patrol vessels and yachts.
 This project investigates the feasibility and temporal availability of useful ISAR imagery
 from measured radar data of small maritime vessels. It examines how the coherent processing
 interval (CPI), target motion and achievable cross-range resolution influence image quality,
-and assesses the qualitative interpretability of vessel-specific scattering centres and their relationship to physical vessel structures.
+and assesses the qualitative interpretability of vessel-specific scattering centres and their plausible associations with physical vessel structures.
 Measured ISAR images are compared against idealised reference images produced by an adapted
 point-scatterer simulator.
 
