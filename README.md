@@ -32,7 +32,7 @@ HRR profiles → modified Haywood range alignment → adapted Yuan autofocus →
 Hamming-windowed Range–Doppler image formation → image-contrast evaluation.
 
 **Image selection and assessment:**  
-MC-ATWS identification of high-contrast candidate intervals and visual assessment of overlapping-CPI ISAR sequences → qualitative assessment of vessel-specific structure.
+MC-ATWS identification of high-contrast candidate intervals, and visual inspection of overlapping-CPI ISAR sequences → qualitative assessment of vessel-specific structure.
 
 **Simulation:**  
 Point-scatterer vessel model → prescribed rotation → simulated HRR profiles →
@@ -108,7 +108,7 @@ configuration is needed.
 run_all
 ```
 
-  Processes each recording over initial CPTWLs of 32, 64 and 128 profiles, with 50% overlap, refines the
+  Processes each recording over initial CPTWLs of 32, 64 and 128 profiles with 50% overlap, refines the
   window length at each candidate, deduplicates overlapping candidates and applies a relative image-contrast threshold, and writes
   `outputs/mcatws/MCATWS_results_summary.csv`.
 
@@ -160,7 +160,7 @@ The principal processing stages were assessed using measured radar data, image-c
 
 - **Point-scatterer simulation:** The simulator generated plausible ISAR scattering responses for idealised vessel models and was reviewed by the supervisor.
 
-- **Implementation consistency:** `verifyAlignmentAutofocus.m` compares the range-aligned and autofocused HRR profiles, complex ISAR image and IC against `evaluateWindow.m` using a numerical tolerance of `1e-10`.
+- **Implementation consistency:** `verifyAlignmentAutofocus.m` checks the consistency of the range-aligned and autofocused HRR profiles, complex ISAR image and IC against `evaluateWindow.m`, using a numerical tolerance of `1e-10`.
 
 ## Tools
 
